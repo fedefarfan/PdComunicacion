@@ -2,7 +2,7 @@
  * Definicion de puertos:
  *
  *    +-----------------+     +----------+
- *    |     ESP32       |     | SHT3x    |
+ *    |     ESP32       |     | SHT1x    |
  *    |                 |     |          | 
  *    |   GPIO 23 (CLK)  ------> SCK     |
  *    |   GPIO 22(DATOS) <-----> SDA     |
