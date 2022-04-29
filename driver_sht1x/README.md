@@ -11,10 +11,6 @@ Los archivos .c en el proyecto se encuentran definidos como:
 
 			idf_component_register(SRCS ${srcs} INCLUDE_DIRS ".")
 
-include_directories ("${CMAKE_SOURCE_DIR}/main/include")
-
-en este ultimo directorio se encuentran los siguientes archivos. sht1x.h y sht1x-puertos.h
-
 La libreria utiliza los archivos main.c, sht1X.c y sht1x-puertos.c, que se decriben.
 
 

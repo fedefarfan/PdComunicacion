@@ -67,10 +67,10 @@ void sht10_calculos(uint16_t *p_humedad,uint16_t *p_temperatura)
 //CONFIGURA PUERTOS COMO SALIDA
 void sht10_init(void)
 {
-    gpio_set_direction_clock();
-    //configure_CLOCK();//CONFIGURA EL PIN DE CLOCK
-    gpio_set_direction_data_out();
-    //configure_DATOS_OUT();//CONFIGURA EL PIN DE SALIDA PARA ENVIAR TRAMA    
+    gpio_set_direction_clock();//CONFIGURA EL PIN DE CLOCK
+    
+    gpio_set_direction_data_out();//CONFIGURA EL PIN DE SALIDA PARA ENVIAR TRAMA    
+
     
     gpio_set_level(DATOS, HIGH);
     gpio_set_level(CLOCK, LOW);
@@ -156,8 +156,7 @@ for (i=128;i>0;i/=2) //DEPENDIENDO DE value1, MMANDA 8 BITS, 00000101 PARA HUM O
 
       gpio_set_level(DATOS, HIGH);
       gpio_set_level(CLOCK, HIGH);
-      gpio_set_direction_data_in();
-      //configure_DATOS_IN(); //CAMBIA DATOS COMO ENTRADA   
+      gpio_set_direction_data_in();//CAMBIA DATOS COMO ENTRADA  
       error=error+gpio_get_level(DATOS);//MIDE ACK
       gpio_set_level(CLOCK, LOW);
     
@@ -204,10 +203,9 @@ uint16_t sht10_leer_byteH(uint8_t ack)
 uint16_t i,val=0;
     
     gpio_set_direction_data_out();
-    //configure_DATOS_OUT(); 
     gpio_set_level(DATOS, HIGH);  
     gpio_set_direction_data_in();
-    //configure_DATOS_IN(); 
+    
     
     for (i=128;i>0;i/=2)          
       {
@@ -219,7 +217,7 @@ uint16_t i,val=0;
    
     }    
     gpio_set_direction_data_out();
-//        configure_DATOS_OUT();   
+
       if (ack) gpio_set_level(DATOS, LOW);      
     else gpio_set_level(DATOS, HIGH);
  
