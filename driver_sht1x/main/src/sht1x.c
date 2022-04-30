@@ -73,21 +73,21 @@ void sht10_init(void)
 
     _gpio_level_data(HIGH);
     _gpio_level_clock(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_clock(HIGH);  
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_data(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_clock(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);    
+    espera(1);    
     _gpio_level_clock(HIGH);
-    vTaskDelay(1 / portTICK_PERIOD_MS); 
+    espera(1); 
     _gpio_level_data(HIGH);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_clock(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_data(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
 }
 
 //LLAMA LAS FUNCIONES PARA CONFIGURARA LAS MEDIDA.
@@ -112,7 +112,7 @@ uint8_t sht10_medicion(uint16_t *p_valor,uint8_t *p_checksum,uint8_t modo)
 //ESPERA QUE FINALICE LA MEDIDA
    for (i=0;i<65535;i++) if(gpio_set_level_data()==0) break;
     if(gpio_set_level_data()) error+=1;
-	vTaskDelay(500 / portTICK_PERIOD_MS);
+	espera(500);
 
 //RECIBE LOS PRIMEROS 8 BIT DE LA MEDIDA    
    *(p_valor)= sht10_leer_byteH(SHT10_ACK);             
@@ -149,7 +149,7 @@ for (i=128;i>0;i/=2) //DEPENDIENDO DE value1, MMANDA 8 BITS, 00000101 PARA HUM O
     else  _gpio_level_data(LOW);//ENVIA 0
     
     _gpio_level_clock(HIGH);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_clock(LOW);
 }
 
@@ -221,7 +221,7 @@ uint16_t i,val=0;
     else _gpio_level_data(HIGH);
  
      _gpio_level_clock(HIGH);
-     vTaskDelay(1 / portTICK_PERIOD_MS);
+     espera(1);
      _gpio_level_clock(LOW);
      _gpio_level_data(HIGH);
      ESP_LOGI(TAG, "Valor de VAL 1= %u ", val);//IMPRIME EL VALOR OBTENIDO
@@ -243,14 +243,14 @@ void sht10_hard_reset(void)
      
     _gpio_level_clock(LOW);
     _gpio_level_data(HIGH);   
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
   
     for(i=0;i<9;i++)            
     {
     _gpio_level_clock(HIGH);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     _gpio_level_clock(LOW);
-    vTaskDelay(1 / portTICK_PERIOD_MS);
+    espera(1);
     }
                
 }

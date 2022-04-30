@@ -36,6 +36,7 @@ void _gpio_level_clock(uint8_t level);//ENVIA UNO O CERO AL PUERTO CLOCK
 
 uint8_t gpio_set_level_data(); //LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENVIA EL SENSOR 
 
+void espera(uint32_t t);//PAUSA DE TIEMPO
 
 
 archivo sht1x.c: Aqui se definen las funciones genericas del driver. Las funciones definidas en este archivo son las siguientes:
@@ -53,3 +54,5 @@ uint8_t sht10_medicion(uint16_t *p_valor,uint8_t *p_checksum,uint8_t modo); //LL
 void lectura_sht10(void); //LLAMA LAS FUNCIONES PARA MEDIR TEMPERATURA Y HUMEDAD. RECIBE LOS DATOS MEDIDOS Y UNA SEÑAL DE ERROR SI LA COMUNICACIÓN FALLA.
 
 void sht10_calculos(uint16_t *p_humedad,uint16_t *p_temperatura); //CÁLCULO EL VALOR DE HUMEDAD Y TEMPERATURA MEDIDA POR EL SENSOR 
+
+

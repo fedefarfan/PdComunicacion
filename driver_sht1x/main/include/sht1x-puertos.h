@@ -37,6 +37,8 @@ void _gpio_level_clock(uint8_t level);
 
 //LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENVIA EL SENSOR 
 uint8_t gpio_set_level_data();
-    
+
+//PAUSA DE TIEMPO
+void espera(uint32_t t);
 
 

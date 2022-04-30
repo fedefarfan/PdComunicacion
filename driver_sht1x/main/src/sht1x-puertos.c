@@ -51,3 +51,10 @@ uint8_t dat;
 dat=gpio_get_level(DATOS);
 return dat;
 }
+
+//PAUSA DE TIEMPO
+void espera(uint32_t t)
+{
+vTaskDelay(t/portTICK_PERIOD_MS);
+}
+
