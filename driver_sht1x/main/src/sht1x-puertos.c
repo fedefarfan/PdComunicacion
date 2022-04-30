@@ -32,10 +32,22 @@ void gpio_set_direction_data_in(void)
     gpio_set_direction(DATOS, GPIO_MODE_INPUT);
 }
 
+//ENVIA UNO O CERO AL PUERTO DATOS 
+void _gpio_level_data(uint8_t level)
+{
+    gpio_set_level(DATOS, level);
+}
 
+//ENVIA UNO O CERO AL PUERTO CLOCK 
+void _gpio_level_clock(uint8_t level)
+{
+    gpio_set_level(CLOCK, level);
+}
 
-
-
-
-
-
+//LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENVIA EL SENSOR 
+uint8_t gpio_set_level_data()
+{
+uint8_t dat;
+dat=gpio_get_level(DATOS);
+return dat;
+}

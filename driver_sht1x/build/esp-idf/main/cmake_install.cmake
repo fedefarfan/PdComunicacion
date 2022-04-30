@@ -1,4 +1,4 @@
-# Install script for directory: /home/fede/Documentos/trabajo/driver_sht1x/main
+# Install script for directory: /home/fede/Documentos/trabajo/trabajo-ultimo/driver_sht1x/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

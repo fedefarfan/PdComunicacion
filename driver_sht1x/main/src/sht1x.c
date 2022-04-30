@@ -71,23 +71,22 @@ void sht10_init(void)
     
     gpio_set_direction_data_out();//CONFIGURA EL PIN DE SALIDA PARA ENVIAR TRAMA    
 
-    
-    gpio_set_level(DATOS, HIGH);
-    gpio_set_level(CLOCK, LOW);
+    _gpio_level_data(HIGH);
+    _gpio_level_clock(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(CLOCK, HIGH);  
+    _gpio_level_clock(HIGH);  
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(DATOS, LOW);
+    _gpio_level_data(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(CLOCK, LOW);
+    _gpio_level_clock(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);    
-    gpio_set_level(CLOCK, HIGH);
+    _gpio_level_clock(HIGH);
     vTaskDelay(1 / portTICK_PERIOD_MS); 
-    gpio_set_level(DATOS, HIGH);
+    _gpio_level_data(HIGH);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(CLOCK, LOW);
+    _gpio_level_clock(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(DATOS, LOW);
+    _gpio_level_data(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);
 }
 
@@ -111,8 +110,8 @@ uint8_t sht10_medicion(uint16_t *p_valor,uint8_t *p_checksum,uint8_t modo)
     default     : break;
     }
 //ESPERA QUE FINALICE LA MEDIDA
-   for (i=0;i<65535;i++) if(gpio_get_level(DATOS)==0) break;  
-    if(gpio_get_level(DATOS)) error+=1;
+   for (i=0;i<65535;i++) if(gpio_set_level_data()==0) break;
+    if(gpio_set_level_data()) error+=1;
 	vTaskDelay(500 / portTICK_PERIOD_MS);
 
 //RECIBE LOS PRIMEROS 8 BIT DE LA MEDIDA    
@@ -146,19 +145,19 @@ uint8_t i,error=0,value=0;
      
 for (i=128;i>0;i/=2) //DEPENDIENDO DE value1, MMANDA 8 BITS, 00000101 PARA HUM O 00000011 PARA TEMP.
 {
-    if (i & value)  gpio_set_level(DATOS, HIGH);//ENVIA 1  
-    else  gpio_set_level(DATOS, LOW);//ENVIA 0
+    if (i & value)  _gpio_level_data(HIGH);//ENVIA 1  
+    else  _gpio_level_data(LOW);//ENVIA 0
     
-    gpio_set_level(CLOCK, HIGH);
+    _gpio_level_clock(HIGH);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(CLOCK, LOW);
+    _gpio_level_clock(LOW);
 }
 
-      gpio_set_level(DATOS, HIGH);
-      gpio_set_level(CLOCK, HIGH);
+      _gpio_level_data(HIGH);
+      _gpio_level_clock(HIGH);
       gpio_set_direction_data_in();//CAMBIA DATOS COMO ENTRADA  
-      error=error+gpio_get_level(DATOS);//MIDE ACK
-      gpio_set_level(CLOCK, LOW);
+      error=error+gpio_set_level_data();//MIDE ACK
+      _gpio_level_clock(LOW);
     
     
     if(value==5)//CARTEL QUE INDICA SI LA CONFIGURACIÓN PARA LA MEDIDA DE HUM FUE EXITOSA
@@ -203,28 +202,28 @@ uint16_t sht10_leer_byteH(uint8_t ack)
 uint16_t i,val=0;
     
     gpio_set_direction_data_out();
-    gpio_set_level(DATOS, HIGH);  
+    _gpio_level_data(HIGH);  
     gpio_set_direction_data_in();
     
     
     for (i=128;i>0;i/=2)          
       {
-    gpio_set_level(CLOCK, HIGH);
+    _gpio_level_clock(HIGH);
              
-    if(gpio_get_level(DATOS))
+    if(gpio_set_level_data())
                         val=(val | i);  
-      gpio_set_level(CLOCK, LOW);
+    _gpio_level_clock(LOW);
    
     }    
     gpio_set_direction_data_out();
 
-      if (ack) gpio_set_level(DATOS, LOW);      
-    else gpio_set_level(DATOS, HIGH);
+      if (ack) _gpio_level_data(LOW);      
+    else _gpio_level_data(HIGH);
  
-     gpio_set_level(CLOCK, HIGH);
+     _gpio_level_clock(HIGH);
      vTaskDelay(1 / portTICK_PERIOD_MS);
-     gpio_set_level(CLOCK, LOW);
-     gpio_set_level(DATOS, HIGH);
+     _gpio_level_clock(LOW);
+     _gpio_level_data(HIGH);
      ESP_LOGI(TAG, "Valor de VAL 1= %u ", val);//IMPRIME EL VALOR OBTENIDO
 
     return val;
@@ -242,15 +241,15 @@ void sht10_hard_reset(void)
 {
     uint8_t i;
      
-    gpio_set_level(CLOCK, LOW);
-    gpio_set_level(DATOS, HIGH);   
+    _gpio_level_clock(LOW);
+    _gpio_level_data(HIGH);   
     vTaskDelay(1 / portTICK_PERIOD_MS);
   
     for(i=0;i<9;i++)            
     {
-    gpio_set_level(CLOCK, HIGH);
+    _gpio_level_clock(HIGH);
     vTaskDelay(1 / portTICK_PERIOD_MS);
-    gpio_set_level(CLOCK, LOW);
+    _gpio_level_clock(LOW);
     vTaskDelay(1 / portTICK_PERIOD_MS);
     }
                

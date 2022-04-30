@@ -1,4 +1,4 @@
-/* * Data converted from /home/fede/Documentos/trabajo/driver_sht1x/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from /home/fede/Documentos/trabajo/trabajo-ultimo/driver_sht1x/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 .section .rodata.embedded

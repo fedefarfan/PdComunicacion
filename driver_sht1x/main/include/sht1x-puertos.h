@@ -29,8 +29,14 @@ void gpio_set_direction_data_out(void);
 //CONFIGURA EL PIN DE 22 COMO ENTRADA, PARA LEE LA INFO DEL SENSOR
 void gpio_set_direction_data_in(void);
 
+//ENVIA UNO O CERO AL PUERTO DATOS 
+void _gpio_level_data(uint8_t level);
 
+//ENVIA UNO O CERO AL PUERTO CLOCK 
+void _gpio_level_clock(uint8_t level);
 
+//LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENVIA EL SENSOR 
+uint8_t gpio_set_level_data();
     
 
 

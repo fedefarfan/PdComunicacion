@@ -24,11 +24,17 @@ archivo sht1x-puertos.c: Este maneja el micro en bajo nivel, permite la configur
 #define DATOS  22
 #define CLOCK  23
  
-void gpio_set_direction_clock(void); //CONFIGURA EL PIN DE 23 COMO SALIDA, RELOJ DE LA SEÑAL
+void gpio_set_direction_clock(void); //CONFIGURA EL PIN 23 COMO SALIDA, RELOJ DE LA SEÑAL
 
-void gpio_set_direction_data_out(void);//CONFIGURA EL PIN DE 22 COMO SALIDA, PARA ENVIAR INFO AL SENSOR
+void gpio_set_direction_data_out(void);//CONFIGURA EL PIN 22 COMO SALIDA, PARA ENVIAR INFORMACION AL SENSOR
  
 void gpio_set_direction_data_in(void);//CONFIGURA EL PIN DE 22 COMO ENTRADA, PARA LEE LA INFO DEL SENSOR
+
+void _gpio_level_data(uint8_t level);//ENVIA UNO O CERO AL PUERTO DATOS 
+
+void _gpio_level_clock(uint8_t level);//ENVIA UNO O CERO AL PUERTO CLOCK 
+
+uint8_t gpio_set_level_data(); //LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENVIA EL SENSOR 
 
 
 

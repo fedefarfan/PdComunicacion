@@ -1,8 +1,8 @@
 {
     "project_name":       "bootloader",
     "project_path":       "/home/fede/esp/esp-idf/components/bootloader/subproject",
-    "build_dir":          "/home/fede/Documentos/trabajo/driver_sht1x/build/bootloader",
-    "config_file":        "/home/fede/Documentos/trabajo/driver_sht1x/sdkconfig",
+    "build_dir":          "/home/fede/Documentos/trabajo/trabajo-ultimo/driver_sht1x/build/bootloader",
+    "config_file":        "/home/fede/Documentos/trabajo/trabajo-ultimo/driver_sht1x/sdkconfig",
     "config_defaults":    "",
     "app_elf":            "bootloader.elf",
     "app_bin":            "bootloader.bin",
