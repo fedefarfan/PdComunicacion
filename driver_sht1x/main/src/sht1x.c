@@ -3,7 +3,7 @@
 
 
 
-static const char *TAG = "sht10";
+//static const char *TAG = "sht10";
 
 static uint8_t LOW = 0;
 static uint8_t HIGH = 1;
@@ -55,9 +55,8 @@ void sht10_calculos(uint16_t *p_humedad,uint16_t *p_temperatura)
     if(rh_true>100)rh_true=100;
     if(rh_true<0.1)rh_true=0.1;
      
+    imprime_temp_hum(rh_true,t_C);
 
-   ESP_LOGI(TAG, "HUMEDAD %f ", rh_true);//IMPRIME VALOR DE HUM
-   ESP_LOGI(TAG, "TEMPERATURA %f ", t_C);//IMPRIME VALOR DE TEMP
 }
 //ENVIA LA TRAMA DE INICIO DEL SENSOR 
 //TRAMA DE INICIO ___    ___  
@@ -159,27 +158,10 @@ for (i=128;i>0;i/=2) //DEPENDIENDO DE value1, MMANDA 8 BITS, 00000101 PARA HUM O
       error=error+gpio_set_level_data();//MIDE ACK
       _gpio_level_clock(LOW);
     
+
+    cartel_resultado_congfig(value,error);//IMPRIME EL RESULTADO DE LA CONFIGURACION DE LA MEDIDA SELECCIONADA
     
-    if(value==5)//CARTEL QUE INDICA SI LA CONFIGURACIÓN PARA LA MEDIDA DE HUM FUE EXITOSA
-    {
-    if(error==0)
-    {
-    ESP_LOGI(TAG, "ACK1-Configuracion exitosa (HUMEDAD) %u", error);
-    }else
-    {
-    ESP_LOGI(TAG, "ACK1-Fallo configuracion , (HUMEDAD) %u", error);
-    }
-    }else{//CARTEL QUE INDICA SI LA CONFIGURACIÓN PARA LA MEDIDA DE TEMP FUE EXITOSA
-    
-    if(error==0)
-    {
-    ESP_LOGI(TAG, "ACK1-Configuracion exitosa (TEMPERATURA) %u", error);
-    }else
-    {
-    ESP_LOGI(TAG, "ACK1-Fallo configuracion , (TEMPERATURA) %u", error);
-    }
-    
-    }
+
 
 return error;//DEVUELVE ERROR     
 }
@@ -224,7 +206,8 @@ uint16_t i,val=0;
      espera(1);
      _gpio_level_clock(LOW);
      _gpio_level_data(HIGH);
-     ESP_LOGI(TAG, "Valor de VAL 1= %u ", val);//IMPRIME EL VALOR OBTENIDO
+     
+     cartel_config(val);//IMPRIME EL VALOR OBTENIDO
 
     return val;
 }

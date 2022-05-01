@@ -20,6 +20,7 @@
 #define DATOS  22
 #define CLOCK  23
 
+static const char *TAG = "sht10";
 //CONFIGURA EL PIN DE 23 COMO SALIDA, RELOJ DE LA SEÑAL 
 void gpio_set_direction_clock(void);
 
@@ -40,5 +41,16 @@ uint8_t gpio_set_level_data();
 
 //PAUSA DE TIEMPO
 void espera(uint32_t t);
+
+// ENVIA 1 o 0, DEPENDIENDO SI LA CONFIGURACION DE LA MEDIDA ES ADECUADA
+void cartel_config(uint16_t val1);
+
+//IMPRIME EL RESULTADO DE LA CONFIGURACION DE LA MEDIDA SELECCIONADA
+void cartel_resultado_congfig(uint8_t value1,uint8_t error1);
+
+//IMPRIME LOS VALORES DE TEMPERATURA Y HUMEDAD DETERMINADOS
+void imprime_temp_hum(float rh_true1,float t_C1);
+
+
 
 

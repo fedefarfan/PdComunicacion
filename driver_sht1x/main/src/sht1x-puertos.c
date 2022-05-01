@@ -58,3 +58,42 @@ void espera(uint32_t t)
 vTaskDelay(t/portTICK_PERIOD_MS);
 }
 
+// ENVIA 1 o 0, DEPENDIENDO SI LA CONFIGURACION DE LA MEDIDA ES ADECUADA
+void cartel_config(uint16_t val1)
+{
+ ESP_LOGI(TAG, "Valor de VAL 1= %u ", val1);//IMPRIME EL VALOR OBTENIDO
+}
+
+//IMPRIME EL RESULTADO DE LA CONFIGURACION DE LA MEDIDA SELECCIONADA
+void cartel_resultado_congfig(uint8_t value1,uint8_t error1)
+{
+    if(value1==5)//CARTEL QUE INDICA SI LA CONFIGURACIÓN PARA LA MEDIDA DE HUM FUE EXITOSA
+    {
+    if(error1==0)
+    {
+    ESP_LOGI(TAG, "ACK1-Configuracion exitosa (HUMEDAD) %u", error1);
+    }else
+    {
+    ESP_LOGI(TAG, "ACK1-Fallo configuracion , (HUMEDAD) %u", error1);
+    }
+    }else{//CARTEL QUE INDICA SI LA CONFIGURACIÓN PARA LA MEDIDA DE TEMP FUE EXITOSA
+    
+    if(error1==0)
+    {
+    ESP_LOGI(TAG, "ACK1-Configuracion exitosa (TEMPERATURA) %u", error1);
+    }else
+    {
+    ESP_LOGI(TAG, "ACK1-Fallo configuracion , (TEMPERATURA) %u", error1);
+    }
+    
+    }
+
+}
+
+//IMPRIME LOS VALORES DE TEMPERATURA Y HUMEDAD DETERMINADOS
+void imprime_temp_hum(float rh_true1,float t_C1)
+{
+   ESP_LOGI(TAG, "HUMEDAD %f ", rh_true1);//IMPRIME VALOR DE HUM
+   ESP_LOGI(TAG, "TEMPERATURA %f ", t_C1);//IMPRIME VALOR DE TEMP
+}
+

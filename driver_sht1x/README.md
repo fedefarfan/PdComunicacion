@@ -38,6 +38,13 @@ uint8_t gpio_set_level_data(); //LEE POR EL PUERTO DATOS LA INFORMACIÓN QUE ENV
 
 void espera(uint32_t t);//PAUSA DE TIEMPO
 
+void cartel_config(uint16_t val1);// ENVIA 1 o 0, DEPENDIENDO SI LA CONFIGURACION DE LA MEDIDA ES ADECUADA
+
+void cartel_resultado_congfig(uint8_t value1,uint8_t error1);//IMPRIME EL RESULTADO DE LA CONFIGURACION DE LA MEDIDA SELECCIONADA
+
+void imprime_temp_hum(float rh_true1,float t_C1);//IMPRIME LOS VALORES DE TEMPERATURA Y HUMEDAD DETERMINADOS
+
+
 
 archivo sht1x.c: Aqui se definen las funciones genericas del driver. Las funciones definidas en este archivo son las siguientes:
 
