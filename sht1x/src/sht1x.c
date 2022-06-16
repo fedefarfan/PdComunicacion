@@ -103,9 +103,9 @@ void sht10_calculos(uint16_t *p_humedad,uint16_t *p_temperatura){
 ***************************************************************************************************/
 void Sht10_Init(void){
 
-	Gpio_SCK_Out_Config();//gpio_set_direction_clock();//CONFIGURA EL PIN DE CLOCK
+	Gpio_SCK_Out_Config();//CONFIGURA EL PIN DE CLOCK
 
-	Gpio_Data_Out_Config();// gpio_set_direction_data_out();//CONFIGURA EL PIN DE SALIDA PARA ENVIAR TRAMA
+	Gpio_Data_Out_Config();//CONFIGURA EL PIN DE SALIDA PARA ENVIAR TRAMA
 
 	Gpio_DATA_Level(HIGH);
 	Gpio_SCK_Level(LOW);
@@ -158,7 +158,7 @@ uint8_t sht10_medicion(uint16_t *p_valor,uint8_t *p_checksum,uint8_t modo){
 //ESPERA QUE FINALICE LA MEDIDA
 	for (i=0;i<65535;i++) if(Gpio_DATA_Read()==0) break;
 	if(Gpio_DATA_Read()) error+=1;
-	Queue_Time(800);//espera(500);
+	Queue_Time(800);
 
 //RECIBE LOS PRIMEROS 8 BIT DE LA MEDIDA
 	*(p_valor)= sht10_leer_byteH(SHT10_ACK);
